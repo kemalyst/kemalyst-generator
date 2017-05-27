@@ -14,4 +14,4 @@ clean:
 	rm -rf  $(OUT_DIR) .crystal .shards libs lib
 
 link: 
-	@ln -s `pwd`/bin/kgen /usr/local/bin/kgen
+	@ln -sf `pwd`/bin/kgen /usr/local/bin/kgen
