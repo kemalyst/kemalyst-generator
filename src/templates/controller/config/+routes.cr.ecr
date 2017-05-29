@@ -1,1 +1,3 @@
-resources <%= @name.capitalize %>
+<% @fields.each do |f| -%>
+<%= %Q(get "/#{@name}/#{f.name}", #{@name}, #{f.name}) %>
+<% end -%>
