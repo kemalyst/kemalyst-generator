@@ -1,6 +1,5 @@
 require "../src/controllers/*"
 
-include Crack::Handler
 include Kemalyst::Handler
 
 get "/", home, index

@@ -1,8 +1,10 @@
-class <%= @name.capitalize %>Controller < Kemalyst::Controller
+module <%= @name.capitalize %>Controller 
 <% @fields.each do |field| -%>
 
-  action <%= field.name %> do
-    html render("<%= @name %>/<%= field.name %>.<%= @language %>", "main.<%= @language %>")
+  class <%= field.name.capitalize %> < Kemalyst::Controller
+    def call(context)
+      html render("<%= @name %>/<%= field.name %>.<%= @language %>", "main.<%= @language %>")
+    end
   end
 <% end -%>
 end
