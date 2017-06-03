@@ -1,9 +1,4 @@
-class <%= @name.capitalize %>Mailer < Kemalyst::Mailer
-  def initialize
-    super
-    from "from@example.com"
-  end
-
+class <%= @name.capitalize %>Mailer < BaseMailer
   def deliver(<%= @fields.map{|f| "#{f.name} : #{f.cr_type}"}.join(", ") %>)
     to "to@example.com"
     subject "Example Subject"

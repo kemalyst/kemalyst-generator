@@ -1,7 +1,7 @@
 module <%= @name.capitalize %>Controller 
 <% @fields.each do |field| -%>
 
-  class <%= field.name.capitalize %> < Kemalyst::Controller
+  class <%= field.name.capitalize %> < BaseController
     def call(context)
       html render("<%= @name %>/<%= field.name %>.<%= @language %>", "main.<%= @language %>")
     end

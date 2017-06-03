@@ -1,7 +1,7 @@
 Kemalyst::Handler::Session.config do |config|
   # The name of the cookie used to store the session data
   #
-  config.key = "_<%= @name %>.session"
+  session.key = "_<%= @name %>.session"
 
   # The secret is used to avoid the session data being changed.  The session
   # data is stored in a cookie.  To avoid changes being made, a security token
@@ -9,5 +9,5 @@ Kemalyst::Handler::Session.config do |config|
   # following command:
   # crystal eval "require \"secure_random\"; puts SecureRandom.hex(64)"
   #
-  config.secret = "<%= SecureRandom.hex(64) %>"
+  session.secret = "<%= SecureRandom.hex(64) %>"
 end

@@ -1,25 +1,25 @@
-Kemalyst::Application.config do |config|
+Kemalyst::Application.config do |app|
   # Set the binding host ip address.  Defaults to "0.0.0.0"
-  # config.host = "0.0.0.0"
+  # app.host = "0.0.0.0"
 
   # Set the port.  Defaults to 3000.
-  # config.port = 3000
+  # app.port = 3000
 
   # Set the environment. Defaults to development.
-  # config.env = "development"
+  # app.env = "development"
 
   # Set the reuse_port option. Defaults to false.
-  # config.reuse_port = false
+  # app.reuse_port = false
 
   # By default, Logging will be sent to STDOUT.  You can create a file logger and
   # assign it to the Application.
-  # log = File.new("logs/#{config.env}.log", "a")
+  # log = File.new("logs/#{app.env}.log", "a")
   # log.flush_on_newline = true
-  # config.logger = Logger.new(log)
-  # config.logger.level = Logger::DEBUG
+  # app.logger = Logger.new(log)
+  # app.logger.level = Logger::DEBUG
 
   # creating a formatter.  This overrides the default crystal formatter
-  # config.logger.formatter = Logger::Formatter.new do |severity, datetime, progname, message, io|
+  # app.logger.formatter = Logger::Formatter.new do |severity, datetime, progname, message, io|
   #   io << "[" << datetime << " #" << Process.pid << "] "
   #   io << severity.rjust(5) << ": " << message
   # end
