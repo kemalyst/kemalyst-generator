@@ -1,5 +1,5 @@
 module HomeController 
-  class Index < BaseController
+  class Index < Kemalyst::Controller
     def call(context)
       html render("home/index.<%= @language %>", "main.<%= @language %>")
     end

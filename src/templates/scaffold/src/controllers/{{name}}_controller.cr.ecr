@@ -1,14 +1,14 @@
 require "../models/<%= @name %>"
 
 module <%= @name.capitalize %>Controller 
-  class Index < BaseController
+  class Index < Kemalyst::Controller
     def call(context)
       <%= @name %>s = <%= @name.capitalize %>.all
       html render("<%= @name %>/index.<%= @language %>", "main.<%= @language %>")
     end
   end
 
-  class Show < BaseController
+  class Show < Kemalyst::Controller
     def call(context)
       if <%= @name %> = <%= @name.capitalize %>.find context.params["id"]
         html render("<%= @name %>/show.<%= @language %>", "main.<%= @language %>")
@@ -19,14 +19,14 @@ module <%= @name.capitalize %>Controller
     end
   end
 
-  class New < BaseController
+  class New < Kemalyst::Controller
     def call(context)
       <%= @name %> = <%= @name.capitalize %>.new
       html render("<%= @name %>/new.<%= @language %>", "main.<%= @language %>")
     end
   end
 
-  class Create < BaseController
+  class Create < Kemalyst::Controller
     def call(context)
       <%= @name %> = <%= @name.capitalize %>.new(context.params.to_h.select(<%= @fields.reject(&.hidden).map(&.name) %>))
 
@@ -40,7 +40,7 @@ module <%= @name.capitalize %>Controller
     end
   end
 
-  class Edit < BaseController
+  class Edit < Kemalyst::Controller
     def call(context)
       if <%= @name %> = <%= @name.capitalize %>.find context.params["id"]
         html render("<%= @name %>/edit.<%= @language %>", "main.<%= @language %>")
@@ -51,7 +51,7 @@ module <%= @name.capitalize %>Controller
     end
   end
   
-  class Update < BaseController
+  class Update < Kemalyst::Controller
     def call(context)
       if <%= @name %> = <%= @name.capitalize %>.find(context.params["id"])
         <%= @name %>.set_attributes(context.params.to_h.select(<%= @fields.reject(&.hidden).map(&.name) %>))
@@ -69,7 +69,7 @@ module <%= @name.capitalize %>Controller
     end
   end
   
-  class Delete < BaseController
+  class Delete < Kemalyst::Controller
     def call(context)
       if <%= @name %> = <%= @name.capitalize %>.find context.params["id"]
         <%= @name %>.destroy
