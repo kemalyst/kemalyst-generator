@@ -31,14 +31,14 @@ Kemalyst::Application.config do |app|
   # Session Handler requires that you change the `secret` in the config/session.cr
   # file.
 
-  # config.handlers.clear
-  # config.handlers << Kemalyst::Handler::Logger.instance(config.logger)
-  # config.handlers << Kemalyst::Handler::Error.instance
-  # config.handlers << Kemalyst::Handler::Static.instance
-  # config.handlers << Kemalyst::Handler::Session.instance
-  # config.handlers << Kemalyst::Handler::Flash.instance
-  # config.handlers << Kemalyst::Handler::Params.instance
-  # config.handlers << Kemalyst::Handler::CSRF.instance
-  # config.handlers << Kemalyst::Handler::Method.instance
-  # config.handlers << Kemalyst::Handler::Router.instance
+  # app.handlers.clear
+  # app.handlers << Kemalyst::Handler::Logger.instance(config.logger)
+  # app.handlers << Kemalyst::Handler::Error.instance
+  # app.handlers << Kemalyst::Handler::Static.instance
+  # app.handlers << Kemalyst::Handler::Session.instance
+  # app.handlers << Kemalyst::Handler::Flash.instance
+  # app.handlers << Kemalyst::Handler::Params.instance
+  # app.handlers << Kemalyst::Handler::CSRF.instance
+  # app.handlers << Kemalyst::Handler::Method.instance
+  # app.handlers << Kemalyst::Handler::Router.instance
 end
