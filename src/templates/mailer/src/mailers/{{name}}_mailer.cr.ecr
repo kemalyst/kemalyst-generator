@@ -1,6 +1,8 @@
-class <%= @name.capitalize %>Mailer < Kemalyst::Mailer
+require "quartz-mailer"
+
+class <%= @name.capitalize %>Mailer < Quartz::Mailer
   def initialize
-    super
+    super()
     from "from@example.com"
   end
 

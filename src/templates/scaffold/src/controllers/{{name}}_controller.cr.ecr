@@ -1,82 +1,68 @@
 require "../models/<%= @name %>"
 
-module <%= @name.capitalize %>Controller 
-  class Index < Kemalyst::Controller
-    def call(context)
-      <%= @name %>s = <%= @name.capitalize %>.all
-      html render("<%= @name %>/index.<%= @language %>", "main.<%= @language %>")
+class <%= @name.capitalize %>Controller < Kemalyst::Controller
+  def index
+    <%= @name %>s = <%= @name.capitalize %>.all
+    html render("<%= @name %>/index.<%= @language %>", "main.<%= @language %>")
+  end
+
+  def show
+    if <%= @name %> = <%= @name.capitalize %>.find params["id"]
+      html render("<%= @name %>/show.<%= @language %>", "main.<%= @language %>")
+    else
+      flash["warning"] = "<%= @name.capitalize %> with ID #{params["id"]} Not Found"
+      redirect "/<%= @name %>s"
     end
   end
 
-  class Show < Kemalyst::Controller
-    def call(context)
-      if <%= @name %> = <%= @name.capitalize %>.find context.params["id"]
-        html render("<%= @name %>/show.<%= @language %>", "main.<%= @language %>")
-      else
-        context.flash["warning"] = "<%= @name.capitalize %> with ID #{context.params["id"]} Not Found"
-        redirect "/<%= @name %>s"
-      end
-    end
+  def new
+    <%= @name %> = <%= @name.capitalize %>.new
+    html render("<%= @name %>/new.<%= @language %>", "main.<%= @language %>")
   end
 
-  class New < Kemalyst::Controller
-    def call(context)
-      <%= @name %> = <%= @name.capitalize %>.new
+  def create
+    <%= @name %> = <%= @name.capitalize %>.new(params.to_h.select(<%= @fields.reject(&.hidden).map(&.name) %>))
+
+    if <%= @name %>.valid? && <%= @name %>.save
+      flash["success"] = "Created <%= @name.capitalize %> successfully."
+      redirect "/<%= @name %>s"
+    else
+      flash["danger"] = "Could not create <%= @name.capitalize %>!"
       html render("<%= @name %>/new.<%= @language %>", "main.<%= @language %>")
     end
   end
 
-  class Create < Kemalyst::Controller
-    def call(context)
-      <%= @name %> = <%= @name.capitalize %>.new(context.params.to_h.select(<%= @fields.reject(&.hidden).map(&.name) %>))
-
-      if <%= @name %>.valid? && <%= @name %>.save
-        context.flash["success"] = "Created <%= @name.capitalize %> successfully."
-        redirect "/<%= @name %>s"
-      else
-        context.flash["danger"] = "Could not create <%= @name.capitalize %>!"
-        html render("<%= @name %>/new.<%= @language %>", "main.<%= @language %>")
-      end
-    end
-  end
-
-  class Edit < Kemalyst::Controller
-    def call(context)
-      if <%= @name %> = <%= @name.capitalize %>.find context.params["id"]
-        html render("<%= @name %>/edit.<%= @language %>", "main.<%= @language %>")
-      else
-        context.flash["warning"] = "<%= @name.capitalize %> with ID #{context.params["id"]} Not Found"
-        redirect "/<%= @name %>s"
-      end
-    end
-  end
-  
-  class Update < Kemalyst::Controller
-    def call(context)
-      if <%= @name %> = <%= @name.capitalize %>.find(context.params["id"])
-        <%= @name %>.set_attributes(context.params.to_h.select(<%= @fields.reject(&.hidden).map(&.name) %>))
-        if <%= @name %>.valid? && <%= @name %>.save
-          context.flash["success"] = "Updated <%= @name.capitalize %> successfully."
-          redirect "/<%= @name %>s"
-        else
-          context.flash["danger"] = "Could not update <%= @name.capitalize %>!"
-          html render("<%= @name %>/edit.<%= @language %>", "main.<%= @language %>")
-        end
-      else
-        context.flash["warning"] = "<%= @name.capitalize %> with ID #{context.params["id"]} Not Found"
-        redirect "/<%= @name %>s"
-      end
-    end
-  end
-  
-  class Delete < Kemalyst::Controller
-    def call(context)
-      if <%= @name %> = <%= @name.capitalize %>.find context.params["id"]
-        <%= @name %>.destroy
-      else
-        context.flash["warning"] = "<%= @name.capitalize %> with ID #{context.params["id"]} Not Found"
-      end
+  def edit
+    if <%= @name %> = <%= @name.capitalize %>.find params["id"]
+      html render("<%= @name %>/edit.<%= @language %>", "main.<%= @language %>")
+    else
+      flash["warning"] = "<%= @name.capitalize %> with ID #{params["id"]} Not Found"
       redirect "/<%= @name %>s"
     end
-  end    
+  end
+  
+  def update
+    if <%= @name %> = <%= @name.capitalize %>.find(params["id"])
+      <%= @name %>.set_attributes(params.to_h.select(<%= @fields.reject(&.hidden).map(&.name) %>))
+      if <%= @name %>.valid? && <%= @name %>.save
+        flash["success"] = "Updated <%= @name.capitalize %> successfully."
+        redirect "/<%= @name %>s"
+      else
+        flash["danger"] = "Could not update <%= @name.capitalize %>!"
+        html render("<%= @name %>/edit.<%= @language %>", "main.<%= @language %>")
+      end
+    else
+      flash["warning"] = "<%= @name.capitalize %> with ID #{params["id"]} Not Found"
+      redirect "/<%= @name %>s"
+    end
+  end
+  
+  def delete
+    if <%= @name %> = <%= @name.capitalize %>.find params["id"]
+      <%= @name %>.destroy
+    else
+      flash["warning"] = "<%= @name.capitalize %> with ID #{params["id"]} Not Found"
+    end
+    redirect "/<%= @name %>s"
+  end
 end
