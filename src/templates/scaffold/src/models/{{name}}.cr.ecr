@@ -1,6 +1,6 @@
-require "granite_orm/adapter/<%= @database %>"
+require "kemalyst-model/adapter/<%= @database %>"
 
-class <%= @name.capitalize %> < Granite::ORM 
+class <%= @name.capitalize %> < Kemalyst::Model 
   adapter <%= @database %>
 
   # id : Int64 primary key is created for you
