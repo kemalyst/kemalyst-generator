@@ -1,3 +1,3 @@
-<% @fields.each do |f| -%>
-<%= %Q(get "/#{@name}/#{f.name}", #{@name}, #{f.name}) %>
+<% @fields.each do |field| -%>
+<%= %Q(get "/#{@name}/#{field.name}", #{@name.capitalize}Controller, :#{field.name}) %>
 <% end -%>
